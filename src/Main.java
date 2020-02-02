@@ -6,6 +6,9 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     @Override
+    /**
+     * This method creates a scene and sets the title to student card
+     */
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("View.fxml"));
         primaryStage.setTitle("Student Card");
