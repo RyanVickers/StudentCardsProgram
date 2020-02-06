@@ -1,7 +1,13 @@
+import javafx.scene.image.Image;
+
+import javax.swing.*;
+import java.util.ArrayList;
+
 public class Student {
     //Instance variables
-    private String firstName, lastName;
+    private String firstName, lastName, activity;
     private int studentNumber;
+    private Image image;
 
     /**
      * This constructor accepts a first name,last name and student #
@@ -11,10 +17,14 @@ public class Student {
      * @param lastName      must contain more than 1 letter
      * @param studentNumber must be between 10000000-99999999
      */
-    public Student(String firstName, String lastName, int studentNumber) {
+    public Student(String firstName, String lastName, int studentNumber, String activity) {
         setFirstName(firstName);
         setLastName(lastName);
         setStudentNumber(studentNumber);
+        addActivity(activity);
+        String fileName = firstName+lastName+".jpg";
+        image = new Image("./images/"+fileName);
+
     }
 
     public String getFirstName() {
@@ -69,6 +79,12 @@ public class Student {
         else
             throw new IllegalArgumentException("The student number should be in the range 10000000-9999999");
     }
+    public void addActivity(String activity){
+ if(!activity.isEmpty())
+     this.activity=activity;
+     else
+         throw new IllegalArgumentException("activity must not be empty");
+ }
 
     /**
      * This method formats the object into a string that can be output to the console
@@ -77,5 +93,13 @@ public class Student {
      */
     public String toString() {
         return String.format("%s %s student #: %d%n", firstName, lastName, studentNumber);
+    }
+
+    public String getActivity() {
+        return activity;
+    }
+
+    public Image getImage() {
+        return image;
     }
 }

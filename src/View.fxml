@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="StudentViewController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StudentViewController">
+   <children>
+      <VBox layoutX="346.0" layoutY="2.0" prefHeight="400.0" prefWidth="272.0">
+         <children>
+            <HBox prefHeight="69.0" prefWidth="246.0">
+               <children>
+                  <Label fx:id="fNameLabel" prefHeight="70.0" prefWidth="95.0" text="First Name:" />
+                  <Label fx:id="fNameText" prefHeight="70.0" prefWidth="193.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="69.0" prefWidth="246.0">
+               <children>
+                  <Label fx:id="lNameLabel" prefHeight="70.0" prefWidth="95.0" text="Last Name:" />
+                  <Label fx:id="lNameText" prefHeight="70.0" prefWidth="193.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="69.0" prefWidth="246.0">
+               <children>
+                  <Label fx:id="studentNumberLabel" prefHeight="68.0" prefWidth="114.0" text="Student Number:" />
+                  <Label fx:id="studentNumberText" prefHeight="70.0" prefWidth="193.0" />
+               </children>
+            </HBox>
+            <TextArea prefHeight="176.0" prefWidth="221.0" />
+         </children>
+      </VBox>
+      <ImageView fx:id="studentImage" fitHeight="178.0" fitWidth="272.0" layoutX="42.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+      <HBox layoutX="146.0" layoutY="202.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label prefHeight="101.0" prefWidth="210.0" text="Favourite Activities:" />
+         </children>
+      </HBox>
+   </children>
 </AnchorPane>
