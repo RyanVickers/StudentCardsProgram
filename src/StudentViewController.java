@@ -24,11 +24,11 @@ public class StudentViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        game = new Student("Ryan", "Vickers", 11111810,"Video Games");
+        game = new Student("Ryan", "Vickers", 1111810,"Video Games");
         studentImage.setImage(game.getImage());
     fNameText.setText(game.getFirstName());
     lNameText.setText(game.getLastName());
 studentNumberText.setText(String.valueOf(game.getStudentNumber()));
-activityTextArea.setText(game.getActivity());
+activityTextArea.setText(game.getActivityList());
     }
 }

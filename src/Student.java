@@ -1,12 +1,12 @@
 import javafx.scene.image.Image;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class Student {
     //Instance variables
-    private String firstName, lastName, activity;
+    private String firstName, lastName;
     private int studentNumber;
+    private ArrayList<String> activityList;
     private Image image;
 
     /**
@@ -17,10 +17,11 @@ public class Student {
      * @param lastName      must contain more than 1 letter
      * @param studentNumber must be between 10000000-99999999
      */
-    public Student(String firstName, String lastName, int studentNumber, String activity) {
+    public Student(String firstName, String lastName, int studentNumber,String activity) {
         setFirstName(firstName);
         setLastName(lastName);
         setStudentNumber(studentNumber);
+        activityList = new ArrayList<String>();
         addActivity(activity);
         String fileName = firstName+lastName+".jpg";
         image = new Image("./images/"+fileName);
@@ -74,14 +75,16 @@ public class Student {
      * @param studentNumber must be between 10000000-99999999
      */
     public void setStudentNumber(int studentNumber) {
-        if (studentNumber >= 10000000 && studentNumber <= 99999999)
+        if (studentNumber >= 1000000 && studentNumber <= 9999999)
             this.studentNumber = studentNumber;
         else
             throw new IllegalArgumentException("The student number should be in the range 10000000-9999999");
     }
+
+
     public void addActivity(String activity){
  if(!activity.isEmpty())
-     this.activity=activity;
+ activityList.add(activity);
      else
          throw new IllegalArgumentException("activity must not be empty");
  }
@@ -95,8 +98,8 @@ public class Student {
         return String.format("%s %s student #: %d%n", firstName, lastName, studentNumber);
     }
 
-    public String getActivity() {
-        return activity;
+    public String getActivityList() {
+        return activityList.toString();
     }
 
     public Image getImage() {

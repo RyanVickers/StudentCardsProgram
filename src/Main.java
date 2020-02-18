@@ -17,7 +17,7 @@ public class Main extends Application {
     }
     public static void main(String[] args) {
         launch(args);
-        Student ryan = new Student("Ryan","vickers",11111810,"cool");
+        Student ryan = new Student("Ryan","vickers",1111810,"Video Games");
         System.out.println(ryan.toString());
     }
 }
