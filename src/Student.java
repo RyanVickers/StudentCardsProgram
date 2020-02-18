@@ -28,6 +28,10 @@ public class Student {
 
     }
 
+    /**
+     * Method returns First name
+     * @return firstName
+     */
     public String getFirstName() {
         return firstName;
     }
@@ -46,6 +50,10 @@ public class Student {
             throw new IllegalArgumentException("First name must contain more than 1 letter");
     }
 
+    /**
+     * Method returns Last name
+     * @return Last Name
+     */
     public String getLastName() {
         return lastName;
     }
@@ -65,6 +73,10 @@ public class Student {
 
     }
 
+    /**
+     * Method returns student number
+     * @return studentNumber
+     */
     public int getStudentNumber() {
         return studentNumber;
     }
@@ -81,14 +93,16 @@ public class Student {
             throw new IllegalArgumentException("The student number should be in the range 10000000-9999999");
     }
 
-
+    /**
+     * Adds activity to activity arraylist
+     * @param activity must not be empty
+     */
     public void addActivity(String activity){
  if(!activity.isEmpty())
  activityList.add(activity);
      else
          throw new IllegalArgumentException("activity must not be empty");
  }
-
     /**
      * This method formats the object into a string that can be output to the console
      *
@@ -98,10 +112,18 @@ public class Student {
         return String.format("%s %s student #: %d%n", firstName, lastName, studentNumber);
     }
 
+    /**
+     * Method returns activity
+     * @return activitylist
+     */
     public String getActivityList() {
         return activityList.toString();
     }
 
+    /**
+     * Method get student image
+     * @return
+     */
     public Image getImage() {
         return image;
     }
