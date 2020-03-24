@@ -21,10 +21,10 @@ public class Student {
         setFirstName(firstName);
         setLastName(lastName);
         setStudentNumber(studentNumber);
-        activityList = new ArrayList<String>();
+        activityList = new ArrayList<>();
         addActivity(activity);
         String fileName = firstName+lastName+".jpg";
-        image = new Image("./images/"+fileName);
+       // image = new Image("./images/"+fileName);
 
     }
 
@@ -101,7 +101,7 @@ public class Student {
  if(!activity.isEmpty())
  activityList.add(activity);
      else
-         throw new IllegalArgumentException("activity must not be empty");
+         throw new IllegalArgumentException("Activity must not be empty");
  }
     /**
      * This method formats the object into a string that can be output to the console
@@ -109,7 +109,7 @@ public class Student {
      * @return
      */
     public String toString() {
-        return String.format("%s %s student #: %d%n", firstName, lastName, studentNumber);
+        return String.format("%s %s student #: %d%n Favourite Activities: %n%s%n", firstName, lastName, studentNumber,getActivityList());
     }
 
     /**
@@ -117,7 +117,8 @@ public class Student {
      * @return activitylist
      */
     public String getActivityList() {
-        return activityList.toString();
+       return activityList.toString().replace("[","").replace("]","");
+
     }
 
     /**
