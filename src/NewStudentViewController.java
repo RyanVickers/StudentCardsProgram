@@ -1,10 +1,17 @@
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -67,11 +74,13 @@ public class NewStudentViewController implements Initializable {
 
     @FXML
     private Button submitButton;
+    @FXML
+    private Button viewStudentButton;
 
     private Student student1;
     private ArrayList<String> interestList = new ArrayList<>();
     public void activity() {
-
+        interestList.clear();
         if (videoGamesCheckBox.isSelected()) {
             interestList.add("Video Games\n");
         }
@@ -115,11 +124,27 @@ public String getActivity(){
                 student1 = new Student(fNameTextField.getText(), lNameTextField.getText(),
                         Integer.parseInt(studentNumberTextField.getText()),getActivity());
                 System.out.println(student1);
-                interestList.clear();
+                viewStudentButton.setVisible(true);
             } catch (IllegalArgumentException e) {
                 errorLabel.setText(e.getMessage());
             }
         }
+    }
+    public void viewStudentPushed(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("View.fxml"));
+        Parent ViewParent = loader.load();
+        Scene ViewScene = new Scene(ViewParent);
+
+        //access the controller and call a method
+            StudentViewController controller = loader.getController();
+        controller.initData(student1);
+
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(ViewScene);
+        window.show();
     }
 
     public boolean fieldsEntered() {

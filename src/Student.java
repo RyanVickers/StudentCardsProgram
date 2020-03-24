@@ -23,8 +23,8 @@ public class Student {
         setStudentNumber(studentNumber);
         activityList = new ArrayList<>();
         addActivity(activity);
-        String fileName = firstName+lastName+".jpg";
-       // image = new Image("./images/"+fileName);
+        String fileName = "defaultImage.jpg";
+       image = new Image("/images/"+fileName);
 
     }
 

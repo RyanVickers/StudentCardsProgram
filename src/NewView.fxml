@@ -13,8 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewStudentViewController">
+<AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewStudentViewController">
    <children>
       <VBox prefHeight="55.0" prefWidth="350.0">
          <children>
@@ -95,7 +94,7 @@
                   </HBox>
                   <HBox alignment="TOP_CENTER" prefHeight="67.0" prefWidth="166.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" text="Button" />
+                        <Button fx:id="viewStudentButton" mnemonicParsing="false" onAction="#viewStudentPushed" prefHeight="30.0" prefWidth="152.0" text="View Student" visible="false" />
                      </children>
                   </HBox>
                </children>
