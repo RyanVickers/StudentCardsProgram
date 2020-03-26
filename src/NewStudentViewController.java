@@ -79,6 +79,10 @@ public class NewStudentViewController implements Initializable {
 
     private Student student1;
     private ArrayList<String> interestList = new ArrayList<>();
+
+    /**
+     * Method adds each selected checkbox activity to an arraylist
+     */
     public void activity() {
         interestList.clear();
         if (videoGamesCheckBox.isSelected()) {
@@ -113,16 +117,25 @@ public class NewStudentViewController implements Initializable {
         }
     }
 
-public String getActivity(){
+    /**
+     * Method gets activity list and returns it as a string
+     *
+     * @return
+     */
+    public String getActivity() {
         activity();
-    return interestList.toString().replace("[","").replace("]","").replace(",","");
-}
+        return interestList.toString().replace("[", "").replace("]", "").replace(",", "");
+    }
 
+    /**
+     * Method checks if fields are entered and prints out stduent object
+     * to the console if submit button is pressed
+     */
     public void buttonPressed() {
         if (fieldsEntered()) {
             try {
                 student1 = new Student(fNameTextField.getText(), lNameTextField.getText(),
-                        Integer.parseInt(studentNumberTextField.getText()),getActivity());
+                        Integer.parseInt(studentNumberTextField.getText()), getActivity());
                 System.out.println(student1);
                 viewStudentButton.setVisible(true);
             } catch (IllegalArgumentException e) {
@@ -130,23 +143,35 @@ public String getActivity(){
             }
         }
     }
+
+    /**
+     * Method displays student object in GUI
+     *
+     * @param event
+     * @throws IOException
+     */
     public void viewStudentPushed(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("View.fxml"));
         Parent ViewParent = loader.load();
         Scene ViewScene = new Scene(ViewParent);
 
-        //access the controller and call a method
-            StudentViewController controller = loader.getController();
+        //access the controller
+        StudentViewController controller = loader.getController();
         controller.initData(student1);
 
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        //Getting the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(ViewScene);
         window.show();
     }
 
+    /**
+     * Method checks all fields are entered and has error handling
+     *
+     * @return
+     */
     public boolean fieldsEntered() {
         String error = "";
         if (fNameTextField.getText().isEmpty()) {
@@ -173,10 +198,8 @@ public String getActivity(){
         return true;
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
 
     }
 }

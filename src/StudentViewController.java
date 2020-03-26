@@ -26,7 +26,11 @@ public class StudentViewController implements Initializable {
     private TextArea activityTextArea;
     private Student selectedStudent;
 
-
+    /**
+     * Method initializes student data
+     *
+     * @param student
+     */
     public void initData(Student student) {
         selectedStudent = student;
         fNameText.setText(selectedStudent.getFirstName());
@@ -37,10 +41,7 @@ public class StudentViewController implements Initializable {
 
     }
 
-
-
     @Override
-
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }

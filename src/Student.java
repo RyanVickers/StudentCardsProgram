@@ -17,19 +17,20 @@ public class Student {
      * @param lastName      must contain more than 1 letter
      * @param studentNumber must be between 10000000-99999999
      */
-    public Student(String firstName, String lastName, int studentNumber,String activity) {
+    public Student(String firstName, String lastName, int studentNumber, String activity) {
         setFirstName(firstName);
         setLastName(lastName);
         setStudentNumber(studentNumber);
         activityList = new ArrayList<>();
         addActivity(activity);
         String fileName = "defaultImage.jpg";
-       image = new Image("/images/"+fileName);
+        image = new Image("/images/" + fileName);
 
     }
 
     /**
      * Method returns First name
+     *
      * @return firstName
      */
     public String getFirstName() {
@@ -52,6 +53,7 @@ public class Student {
 
     /**
      * Method returns Last name
+     *
      * @return Last Name
      */
     public String getLastName() {
@@ -75,6 +77,7 @@ public class Student {
 
     /**
      * Method returns student number
+     *
      * @return studentNumber
      */
     public int getStudentNumber() {
@@ -95,34 +98,38 @@ public class Student {
 
     /**
      * Adds activity to activity arraylist
+     *
      * @param activity must not be empty
      */
-    public void addActivity(String activity){
- if(!activity.isEmpty())
- activityList.add(activity);
-     else
-         throw new IllegalArgumentException("Activity must not be empty");
- }
+    public void addActivity(String activity) {
+        if (!activity.isEmpty())
+            activityList.add(activity);
+        else
+            throw new IllegalArgumentException("Activity must not be empty");
+    }
+
     /**
      * This method formats the object into a string that can be output to the console
      *
      * @return
      */
     public String toString() {
-        return String.format("%s %s student #: %d%n Favourite Activities: %n%s%n", firstName, lastName, studentNumber,getActivityList());
+        return String.format("%s %s student #: %d%n Favourite Activities: %n%s%n", firstName, lastName, studentNumber, getActivityList());
     }
 
     /**
      * Method returns activity
+     *
      * @return activitylist
      */
     public String getActivityList() {
-       return activityList.toString().replace("[","").replace("]","");
+        return activityList.toString().replace("[", "").replace("]", "");
 
     }
 
     /**
      * Method get student image
+     *
      * @return
      */
     public Image getImage() {
