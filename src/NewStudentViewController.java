@@ -9,8 +9,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.awt.image.ImageFilter;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -76,10 +81,20 @@ public class NewStudentViewController implements Initializable {
     private Button submitButton;
     @FXML
     private Button viewStudentButton;
+    @FXML
+    private ImageView chooseImage;
+
+    @FXML
+    private Button imageButton;
 
     private Student student1;
     private ArrayList<String> interestList = new ArrayList<>();
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        chooseImage.setImage(new Image("images/defaultImage.jpg"));
+
+    }
     /**
      * Method adds each selected checkbox activity to an arraylist
      */
@@ -198,8 +213,23 @@ public class NewStudentViewController implements Initializable {
         return true;
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void chooseImageButtonPushed(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Image");
+        FileChooser.ExtensionFilter imageFilter=new FileChooser.ExtensionFilter("Image Files","*.jpg","*.png");
+        fileChooser.getExtensionFilters().add(imageFilter);
+        String startDirectoryString=System.getProperty("user.home")+"\\Pictures";
+        File startDirectory=new File(startDirectoryString);
+        if(!startDirectory.canRead())
+            startDirectory = new File(System.getProperty("user.home"));
+            fileChooser.setInitialDirectory(startDirectory);
 
+        File studentImageFile = fileChooser.showOpenDialog(stage);
+        if (studentImageFile != null && studentImageFile.isFile()) {
+            chooseImage.setImage(new Image(studentImageFile.toURI().toString()));
+        }
     }
+
+
 }
