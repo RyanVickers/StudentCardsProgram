@@ -1,5 +1,7 @@
 import javafx.scene.image.Image;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 
 public class Student {
@@ -7,6 +9,7 @@ public class Student {
     private String firstName, lastName;
     private int studentNumber;
     private ArrayList<String> activityList;
+    private LocalDate birthday;
     private Image image;
 
     /**
@@ -17,10 +20,11 @@ public class Student {
      * @param lastName      must contain more than 1 letter
      * @param studentNumber must be between 10000000-99999999
      */
-    public Student(String firstName, String lastName, int studentNumber, String activity) {
+    public Student(String firstName, String lastName, int studentNumber, String activity,LocalDate birthday) {
         setFirstName(firstName);
         setLastName(lastName);
         setStudentNumber(studentNumber);
+        setBirthday(birthday);
         activityList = new ArrayList<>();
         addActivity(activity);
         String fileName = "defaultImage.jpg";
@@ -134,5 +138,24 @@ public class Student {
      */
     public Image getImage() {
         return image;
+    }
+
+    public void setBirthday(LocalDate birthday){
+        LocalDate date =LocalDate.now();
+        Period period= Period.between(birthday,date);
+        int age = period.getYears();
+        if(age>=10&&age<=120)
+            this.birthday=birthday;
+        else
+            throw new IllegalArgumentException("Age must be between 10 and 120 years old.");
+
+    }
+    public LocalDate getBirthday(){return birthday;}
+
+    public int getAge() {
+        LocalDate date = LocalDate.now();
+        Period period = Period.between(birthday, date);
+        int age = period.getYears();
+        return age;
     }
 }

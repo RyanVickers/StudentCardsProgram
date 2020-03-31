@@ -5,12 +5,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.control.DatePicker;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -18,6 +16,7 @@ import java.awt.image.ImageFilter;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -87,6 +86,14 @@ public class NewStudentViewController implements Initializable {
     @FXML
     private Button imageButton;
 
+
+    @FXML
+    private DatePicker datePicker;
+
+    @FXML
+    private Label ageLabel;
+
+
     private Student student1;
     private ArrayList<String> interestList = new ArrayList<>();
 
@@ -150,7 +157,7 @@ public class NewStudentViewController implements Initializable {
         if (fieldsEntered()) {
             try {
                 student1 = new Student(fNameTextField.getText(), lNameTextField.getText(),
-                        Integer.parseInt(studentNumberTextField.getText()), getActivity());
+                        Integer.parseInt(studentNumberTextField.getText()), getActivity(),datePicker.getValue());
                 System.out.println(student1);
                 viewStudentButton.setVisible(true);
             } catch (IllegalArgumentException e) {
@@ -189,6 +196,9 @@ public class NewStudentViewController implements Initializable {
      */
     public boolean fieldsEntered() {
         String error = "";
+        if (datePicker.getValue()==null){
+            error="Birthday Field is Empty";
+        }
         if (fNameTextField.getText().isEmpty()) {
             error = "First Name Field is Empty";
         }
@@ -207,11 +217,9 @@ public class NewStudentViewController implements Initializable {
             else error = "All Fields are Empty";
         }
         errorLabel.setText(error);
-        if (!error.isEmpty()) {
-            return false;
-        }
-        return true;
+        return error.isEmpty();
     }
+
 
     public void chooseImageButtonPushed(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Period;
 import java.util.ResourceBundle;
 
 public class StudentViewController implements Initializable {
@@ -24,6 +25,8 @@ public class StudentViewController implements Initializable {
     private ImageView studentImage;
     @FXML
     private TextArea activityTextArea;
+    @FXML
+    private Label birthday;
     private Student selectedStudent;
 
     /**
@@ -38,6 +41,7 @@ public class StudentViewController implements Initializable {
         studentNumberText.setText(Integer.toString(selectedStudent.getStudentNumber()));
         activityTextArea.setText(student.getActivityList());
         studentImage.setImage(student.getImage());
+        birthday.setText(selectedStudent.getBirthday() +" Age: "+ selectedStudent.getAge());
 
     }
 
