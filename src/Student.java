@@ -20,7 +20,7 @@ public class Student {
      * @param lastName      must contain more than 1 letter
      * @param studentNumber must be between 10000000-99999999
      */
-    public Student(String firstName, String lastName, int studentNumber, String activity,LocalDate birthday) {
+    public Student(String firstName, String lastName, int studentNumber, String activity, LocalDate birthday) {
         setFirstName(firstName);
         setLastName(lastName);
         setStudentNumber(studentNumber);
@@ -140,18 +140,34 @@ public class Student {
         return image;
     }
 
-    public void setBirthday(LocalDate birthday){
-        LocalDate date =LocalDate.now();
-        Period period= Period.between(birthday,date);
+    /**
+     * Method sets birthday and validates age is between 10-120
+     * @param birthday
+     */
+
+    public void setBirthday(LocalDate birthday) {
+        LocalDate date = LocalDate.now();
+        Period period = Period.between(birthday, date);
         int age = period.getYears();
-        if(age>=10&&age<=120)
-            this.birthday=birthday;
+        if (age >= 10 && age <= 120)
+            this.birthday = birthday;
         else
             throw new IllegalArgumentException("Age must be between 10 and 120 years old.");
 
     }
-    public LocalDate getBirthday(){return birthday;}
 
+    /**
+     * Method returns birthday as localdate
+     * @return
+     */
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    /**
+     * Method converts birthday into an age in years
+     * @return
+     */
     public int getAge() {
         LocalDate date = LocalDate.now();
         Period period = Period.between(birthday, date);

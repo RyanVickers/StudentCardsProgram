@@ -102,6 +102,7 @@ public class NewStudentViewController implements Initializable {
         chooseImage.setImage(new Image("images/defaultImage.jpg"));
 
     }
+
     /**
      * Method adds each selected checkbox activity to an arraylist
      */
@@ -157,7 +158,7 @@ public class NewStudentViewController implements Initializable {
         if (fieldsEntered()) {
             try {
                 student1 = new Student(fNameTextField.getText(), lNameTextField.getText(),
-                        Integer.parseInt(studentNumberTextField.getText()), getActivity(),datePicker.getValue());
+                        Integer.parseInt(studentNumberTextField.getText()), getActivity(), datePicker.getValue());
                 System.out.println(student1);
                 viewStudentButton.setVisible(true);
             } catch (IllegalArgumentException e) {
@@ -196,8 +197,8 @@ public class NewStudentViewController implements Initializable {
      */
     public boolean fieldsEntered() {
         String error = "";
-        if (datePicker.getValue()==null){
-            error="Birthday Field is Empty";
+        if (datePicker.getValue() == null) {
+            error = "Birthday Field is Empty";
         }
         if (fNameTextField.getText().isEmpty()) {
             error = "First Name Field is Empty";
@@ -220,18 +221,21 @@ public class NewStudentViewController implements Initializable {
         return error.isEmpty();
     }
 
-
+    /**
+     * Method Allows user to set student image when button pushed
+     * @param event
+     */
     public void chooseImageButtonPushed(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Image");
-        FileChooser.ExtensionFilter imageFilter=new FileChooser.ExtensionFilter("Image Files","*.jpg","*.png");
+        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
         fileChooser.getExtensionFilters().add(imageFilter);
-        String startDirectoryString=System.getProperty("user.home")+"\\Pictures";
-        File startDirectory=new File(startDirectoryString);
-        if(!startDirectory.canRead())
+        String startDirectoryString = System.getProperty("user.home") + "\\Pictures";
+        File startDirectory = new File(startDirectoryString);
+        if (!startDirectory.canRead())
             startDirectory = new File(System.getProperty("user.home"));
-            fileChooser.setInitialDirectory(startDirectory);
+        fileChooser.setInitialDirectory(startDirectory);
 
         File studentImageFile = fileChooser.showOpenDialog(stage);
         if (studentImageFile != null && studentImageFile.isFile()) {

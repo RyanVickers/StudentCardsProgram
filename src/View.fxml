@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.ImageView?>
@@ -10,79 +11,101 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="587.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StudentViewController">
+<AnchorPane prefHeight="500.0" prefWidth="587.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="StudentViewController">
     <children>
-        <VBox layoutX="204.0" layoutY="72.0" prefHeight="234.0" prefWidth="386.0">
+        <VBox layoutX="204.0" layoutY="72.0" prefHeight="276.0" prefWidth="386.0">
             <children>
-            <HBox prefHeight="28.0" prefWidth="265.0">
-               <children>
-                        <Label fx:id="fNameLabel" prefHeight="70.0" prefWidth="94.0" text="First Name:" />
-                        <Label fx:id="fNameText" prefHeight="70.0" prefWidth="193.0" />
-               </children>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </HBox>
-            <HBox prefHeight="28.0" prefWidth="265.0">
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-               <children>
-                        <Label fx:id="lNameLabel" prefHeight="70.0" prefWidth="94.0" text="Last Name:" />
-                        <Label fx:id="lNameText" prefHeight="70.0" prefWidth="193.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="28.0" prefWidth="265.0">
-               <children>
-                        <Label fx:id="studentNumberLabel" prefHeight="18.0" prefWidth="94.0" text="Student Number:" />
-                        <Label fx:id="studentNumberText" prefHeight="70.0" prefWidth="193.0" />
-               </children>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </HBox>
-            <HBox prefHeight="28.0" prefWidth="265.0">
-               <children>
-                  <Label fx:id="birthdayLabel" prefHeight="18.0" prefWidth="94.0" text="Birthday:" />
-                  <Label fx:id="birthday" prefHeight="18.0" prefWidth="142.0" />
-                  <Label fx:id="birthday2" prefHeight="18.0" prefWidth="142.0" />
-               </children>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </HBox>
-            <HBox prefHeight="124.0" prefWidth="386.0">
-               <children>
-                      <TextArea fx:id="activityTextArea" prefHeight="71.0" prefWidth="386.0" />
-               </children>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </HBox>
-            <Label fx:id="birthday1" prefHeight="18.0" prefWidth="142.0" />
+                <HBox prefHeight="28.0" prefWidth="265.0">
+                    <children>
+                        <Label fx:id="fNameLabel" prefHeight="70.0" prefWidth="110.0" text="First Name:">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="fNameText" prefHeight="70.0" prefWidth="193.0"/>
+                    </children>
+                    <padding>
+                        <Insets top="10.0"/>
+                    </padding>
+                </HBox>
+                <HBox prefHeight="28.0" prefWidth="265.0">
+                    <padding>
+                        <Insets top="10.0"/>
+                    </padding>
+                    <children>
+                        <Label fx:id="lNameLabel" prefHeight="70.0" prefWidth="110.0" text="Last Name:">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="lNameText" prefHeight="70.0" prefWidth="193.0"/>
+                    </children>
+                </HBox>
+                <HBox prefHeight="28.0" prefWidth="265.0">
+                    <children>
+                        <Label fx:id="studentNumberLabel" prefHeight="18.0" prefWidth="110.0" text="Student Number:">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="studentNumberText" prefHeight="70.0" prefWidth="193.0"/>
+                    </children>
+                    <padding>
+                        <Insets top="10.0"/>
+                    </padding>
+                </HBox>
+                <HBox prefHeight="28.0" prefWidth="265.0">
+                    <children>
+                        <Label fx:id="birthdayLabel" prefHeight="18.0" prefWidth="110.0" text="Birthday:">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="birthday" prefHeight="18.0" prefWidth="142.0"/>
+                    </children>
+                    <padding>
+                        <Insets top="10.0"/>
+                    </padding>
+                </HBox>
+                <HBox prefHeight="224.0" prefWidth="366.0">
+                    <children>
+                        <TextArea fx:id="activityTextArea" prefHeight="131.0" prefWidth="366.0"/>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" top="10.0"/>
+                    </padding>
+                </HBox>
             </children>
-         <padding>
-            <Insets left="10.0" right="10.0" />
-         </padding>
+            <padding>
+                <Insets left="10.0" right="10.0"/>
+            </padding>
         </VBox>
-        <ImageView fx:id="studentImage" fitHeight="112.0" fitWidth="190.0" layoutX="14.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="studentImage" fitHeight="111.0" fitWidth="190.0" layoutX="19.0" layoutY="86.0"
+                   pickOnBounds="true" preserveRatio="true">
             <effect>
-                <DropShadow />
+                <DropShadow/>
             </effect>
         </ImageView>
-        <HBox layoutX="14.0" layoutY="184.0" prefHeight="100.0" prefWidth="200.0">
+        <HBox layoutX="83.0" layoutY="202.0" prefHeight="48.0" prefWidth="131.0">
             <children>
-                <Label prefHeight="101.0" prefWidth="210.0" text="Favourite Activities:" />
+                <Label prefHeight="48.0" prefWidth="201.0" text="Favourite Activities:"/>
             </children>
         </HBox>
-      <VBox layoutX="5.0" prefHeight="72.0" prefWidth="587.0">
-         <children>
-            <Label alignment="CENTER" prefHeight="117.0" prefWidth="587.0" text="Student Profiles" textAlignment="CENTER">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
-         </children>
-      </VBox>
+        <VBox layoutX="5.0" prefHeight="72.0" prefWidth="587.0">
+            <children>
+                <Label alignment="CENTER" prefHeight="117.0" prefWidth="587.0" text="Student Profiles"
+                       textAlignment="CENTER">
+                    <font>
+                        <Font size="25.0"/>
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <HBox layoutX="13.0" layoutY="350.0" prefHeight="137.0" prefWidth="570.0">
+            <children>
+                <ListView fx:id="studentListView" prefHeight="138.0" prefWidth="583.0"/>
+            </children>
+        </HBox>
     </children>
 </AnchorPane>
