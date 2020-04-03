@@ -142,6 +142,7 @@ public class Student {
 
     /**
      * Method sets birthday and validates age is between 10-120
+     *
      * @param birthday
      */
 
@@ -158,6 +159,7 @@ public class Student {
 
     /**
      * Method returns birthday as localdate
+     *
      * @return
      */
     public LocalDate getBirthday() {
@@ -166,6 +168,7 @@ public class Student {
 
     /**
      * Method converts birthday into an age in years
+     *
      * @return
      */
     public int getAge() {

@@ -223,6 +223,7 @@ public class NewStudentViewController implements Initializable {
 
     /**
      * Method Allows user to set student image when button pushed
+     *
      * @param event
      */
     public void chooseImageButtonPushed(ActionEvent event) {
