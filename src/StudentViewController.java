@@ -1,6 +1,8 @@
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -8,6 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -73,6 +76,19 @@ public class StudentViewController implements Initializable {
         studentImage.setImage(selectedStudent.getImage());
         birthday.setText(selectedStudent.getBirthday() + " Age: " + selectedStudent.getAge());
         studentList.add(selectedStudent);
+    }
+
+    public void createStudentPushed(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("NewView.fxml"));
+        Parent ViewParent = loader.load();
+        Scene ViewScene = new Scene(ViewParent);
+
+        //Getting the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(ViewScene);
+        window.show();
     }
 }
 

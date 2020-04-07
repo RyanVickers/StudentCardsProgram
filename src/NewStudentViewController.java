@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -86,13 +87,16 @@ public class NewStudentViewController implements Initializable {
     @FXML
     private Button imageButton;
 
+    @FXML
+    private Label birthday;
 
     @FXML
     private DatePicker datePicker;
 
     @FXML
-    private Label ageLabel;
+    void getAge(ActionEvent event) {
 
+    }
 
     private Student student1;
     private ArrayList<String> interestList = new ArrayList<>();
@@ -100,6 +104,7 @@ public class NewStudentViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         chooseImage.setImage(new Image("images/defaultImage.jpg"));
+        studentNumberTextField.setText(String.valueOf(Student.getNewStudentNumber()));
 
     }
 
@@ -109,34 +114,34 @@ public class NewStudentViewController implements Initializable {
     public void activity() {
         interestList.clear();
         if (videoGamesCheckBox.isSelected()) {
-            interestList.add("Video Games\n");
+            interestList.add("Video Games");
         }
         if (readingCheckBox.isSelected()) {
-            interestList.add("Reading\n");
+            interestList.add("Reading");
         }
         if (cookingCheckBox.isSelected()) {
-            interestList.add("Cooking\n");
+            interestList.add("Cooking");
         }
         if (codingCheckBox.isSelected()) {
-            interestList.add("Coding\n");
+            interestList.add("Coding");
         }
         if (runningCheckBox.isSelected()) {
-            interestList.add("Running\n");
+            interestList.add("Running");
         }
         if (musicCheckBox.isSelected()) {
-            interestList.add("Music\n");
+            interestList.add("Music");
         }
         if (hockeyCheckBox.isSelected()) {
-            interestList.add("Hockey\n");
+            interestList.add("Hockey");
         }
         if (moviesCheckBox.isSelected()) {
-            interestList.add("Movies\n");
+            interestList.add("Movies");
         }
         if (sleepingCheckBox.isSelected()) {
-            interestList.add("Sleeping\n");
+            interestList.add("Sleeping");
         }
         if (travelingCheckBox.isSelected()) {
-            interestList.add("Traveling\n");
+            interestList.add("Traveling");
         }
     }
 
@@ -157,8 +162,7 @@ public class NewStudentViewController implements Initializable {
     public void buttonPressed() {
         if (fieldsEntered()) {
             try {
-                student1 = new Student(fNameTextField.getText(), lNameTextField.getText(),
-                        Integer.parseInt(studentNumberTextField.getText()), getActivity(), datePicker.getValue());
+                student1 = new Student(fNameTextField.getText(), lNameTextField.getText(),Integer.parseInt(studentNumberTextField.getText()), getActivity(), datePicker.getValue(), chooseImage.getImage());
                 System.out.println(student1);
                 viewStudentButton.setVisible(true);
             } catch (IllegalArgumentException e) {
@@ -230,8 +234,10 @@ public class NewStudentViewController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Image");
+
         FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
         fileChooser.getExtensionFilters().add(imageFilter);
+
         String startDirectoryString = System.getProperty("user.home") + "\\Pictures";
         File startDirectory = new File(startDirectoryString);
         if (!startDirectory.canRead())
@@ -244,5 +250,11 @@ public class NewStudentViewController implements Initializable {
         }
     }
 
-
+    public void getAge() {
+        LocalDate date = LocalDate.now();
+        Period period = Period.between(datePicker.getValue(), date);
+        int age = period.getYears();
+        birthday.setText(String.valueOf(age));
+    }
 }
+

@@ -11,24 +11,24 @@ public class Student {
     private ArrayList<String> activityList;
     private LocalDate birthday;
     private Image image;
+    private static int newStudentNumber=1000000;
 
     /**
      * This constructor accepts a first name,last name and student #
      * to create a student object with valid values
-     *
-     * @param firstName     must contain more than 1 letter
+     *  @param firstName     must contain more than 1 letter
      * @param lastName      must contain more than 1 letter
-     * @param studentNumber must be between 10000000-99999999
+
+     * @param image
      */
-    public Student(String firstName, String lastName, int studentNumber, String activity, LocalDate birthday) {
+    public Student(String firstName, String lastName,int studentNumber,String activity, LocalDate birthday, Image image) {
         setFirstName(firstName);
         setLastName(lastName);
-        setStudentNumber(studentNumber);
+        setStudentNumber(newStudentNumber);
         setBirthday(birthday);
         activityList = new ArrayList<>();
         addActivity(activity);
-        String fileName = "defaultImage.jpg";
-        image = new Image("/images/" + fileName);
+        setImage(image);
 
     }
 
@@ -85,17 +85,22 @@ public class Student {
      * @return studentNumber
      */
     public int getStudentNumber() {
+
         return studentNumber;
     }
-
+public static int getNewStudentNumber(){
+    return newStudentNumber;
+}
     /**
      * This method validates the student number is in the proper range
      *
-     * @param studentNumber must be between 10000000-99999999
      */
-    public void setStudentNumber(int studentNumber) {
-        if (studentNumber >= 1000000 && studentNumber <= 9999999)
-            this.studentNumber = studentNumber;
+    private void setStudentNumber(int studentNumber) {
+        if (studentNumber >= 1000000 && studentNumber<= 9999999) {
+            this.studentNumber=studentNumber;
+            newStudentNumber=newStudentNumber+1;
+
+        }
         else
             throw new IllegalArgumentException("The student number should be in the range 10000000-9999999");
     }
@@ -176,5 +181,11 @@ public class Student {
         Period period = Period.between(birthday, date);
         int age = period.getYears();
         return age;
+    }
+    public void setImage(Image image) {
+        if(!image.isError())
+        this.image = image;
+        else
+            throw new IllegalArgumentException("Image Error");
     }
 }
