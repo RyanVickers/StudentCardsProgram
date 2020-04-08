@@ -1,6 +1,4 @@
-import com.sun.jdi.event.StepEvent;
-import javafx.collections.ObservableArray;
-import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,19 +9,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class StudentViewController implements Initializable {
-
 
     @FXML
     private Label fNameLabel;
@@ -56,10 +50,15 @@ public class StudentViewController implements Initializable {
     @FXML
     private ImageView studentImage;
 
-
     private Student selectedStudent;
     private ArrayList<Student> newStudentList;
 
+    /**
+     * Method to initialize scene
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -81,11 +80,20 @@ public class StudentViewController implements Initializable {
 
     }
 
+    /**
+     * Method to change student based on item clicked in listView
+     */
     public void listClicked() {
         Student student = studentListView.getSelectionModel().getSelectedItem();
         initData(student);
     }
 
+    /**
+     * Method opens create student form
+     *
+     * @param event
+     * @throws IOException
+     */
     public void createStudentPushed(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("NewView.fxml"));
@@ -103,6 +111,11 @@ public class StudentViewController implements Initializable {
         window.show();
     }
 
+    /**
+     * Method gets student object Array and adds student objects to listView
+     *
+     * @param StudentList
+     */
     public void getNewArray(ArrayList<Student> StudentList) {
         newStudentList = StudentList;
         studentListView.getItems().addAll(newStudentList);

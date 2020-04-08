@@ -9,20 +9,15 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.DatePicker;
-import javafx.scene.input.InputMethodEvent;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.awt.image.ImageFilter;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class NewStudentViewController implements Initializable {
@@ -44,6 +39,15 @@ public class NewStudentViewController implements Initializable {
 
     @FXML
     private TextField studentNumberTextField;
+
+    @FXML
+    private Label studentNumberLabel1;
+
+    @FXML
+    private DatePicker datePicker;
+
+    @FXML
+    private Label birthday;
 
     @FXML
     private Label interestLabel;
@@ -83,34 +87,28 @@ public class NewStudentViewController implements Initializable {
 
     @FXML
     private Button submitButton;
-    @FXML
-    private Button viewStudentButton;
+
     @FXML
     private ImageView chooseImage;
 
     @FXML
     private Button imageButton;
 
-    @FXML
-    private Label birthday;
-
-    @FXML
-    private DatePicker datePicker;
-
-    @FXML
-    void getAge() {
-
-    }
-
     private ArrayList<String> interestList = new ArrayList<>();
     private ArrayList<Student> StudentList = new ArrayList<>();
 
-
+    /**
+     * Initilize Method for scene
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //setting default image
         chooseImage.setImage(new Image("images/defaultImage.jpg"));
+        //setting next student number
         studentNumberTextField.setText(String.valueOf(Student.getNewStudentNumber()));
-
 
     }
 
@@ -170,6 +168,7 @@ public class NewStudentViewController implements Initializable {
     public void viewStudentPushed(ActionEvent event) throws IOException {
         if (fieldsEntered()) {
             try {
+                //creating student objects
                 Student student1 = new Student(fNameTextField.getText(), lNameTextField.getText(), Integer.parseInt(studentNumberTextField.getText()), getActivity(), datePicker.getValue(), chooseImage.getImage());
                 StudentList.add(student1);
                 System.out.print(student1.studentString());
@@ -252,6 +251,11 @@ public class NewStudentViewController implements Initializable {
         }
     }
 
+    /**
+     * Method gets age of student
+     *
+     * @param event
+     */
     public void getAge(ActionEvent event) {
         LocalDate date = LocalDate.now();
         Period period = Period.between(datePicker.getValue(), date);
@@ -259,14 +263,22 @@ public class NewStudentViewController implements Initializable {
         birthday.setText("Age: " + age);
     }
 
+    /**
+     * Method gets array of student objects
+     *
+     * @param newStudentList
+     */
     public void getArray(ArrayList<Student> newStudentList) {
         StudentList = newStudentList;
     }
 
+    /**
+     * Method to set default user
+     */
     public void loadDefaultStudent() {
         fNameTextField.setText("Ryan");
         lNameTextField.setText("Vickers");
-        datePicker.setValue(LocalDate.of(2001, 7,5));
+        datePicker.setValue(LocalDate.of(2001, 7, 5));
         videoGamesCheckBox.setSelected(true);
         musicCheckBox.setSelected(true);
         codingCheckBox.setSelected(true);

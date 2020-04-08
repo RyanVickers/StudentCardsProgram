@@ -24,7 +24,7 @@ public class Student {
     public Student(String firstName, String lastName, int studentNumber, String activity, LocalDate birthday, Image image) {
         setFirstName(firstName);
         setLastName(lastName);
-        setStudentNumber(newStudentNumber);
+        setStudentNumber(studentNumber);
         setBirthday(birthday);
         activityList = new ArrayList<>();
         addActivity(activity);
@@ -76,7 +76,6 @@ public class Student {
             this.lastName = lastName;
         } else
             throw new IllegalArgumentException("Last name must contain more than 1 letter");
-
     }
 
     /**
@@ -85,7 +84,6 @@ public class Student {
      * @return studentNumber
      */
     public int getStudentNumber() {
-
         return studentNumber;
     }
 
@@ -96,11 +94,10 @@ public class Student {
     /**
      * This method validates the student number is in the proper range
      */
-    private void setStudentNumber(int studentNumber) {
+    public void setStudentNumber(int studentNumber) {
         if (studentNumber >= 100000000 && studentNumber <= 999999999) {
             this.studentNumber = studentNumber;
             newStudentNumber = newStudentNumber + 1;
-
         } else
             throw new IllegalArgumentException("The student number should be in the range 10000000-9999999");
     }
@@ -142,7 +139,7 @@ public class Student {
     }
 
     /**
-     * Method get student image
+     * Method gets student image
      *
      * @return
      */
@@ -177,7 +174,7 @@ public class Student {
     }
 
     /**
-     * Method converts birthday into an age in years
+     * Method converts birthday into an age in years and returns it
      *
      * @return
      */
@@ -188,6 +185,11 @@ public class Student {
         return age;
     }
 
+    /**
+     * Method sets user Image
+     *
+     * @param image
+     */
     public void setImage(Image image) {
         if (!image.isError())
             this.image = image;
