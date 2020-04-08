@@ -11,7 +11,7 @@ public class Student {
     private ArrayList<String> activityList;
     private LocalDate birthday;
     private Image image;
-    private static int newStudentNumber = 1000000;
+    private static int newStudentNumber = 100000000;
 
     /**
      * This constructor accepts a first name,last name and student #
@@ -97,7 +97,7 @@ public class Student {
      * This method validates the student number is in the proper range
      */
     private void setStudentNumber(int studentNumber) {
-        if (studentNumber >= 1000000 && studentNumber <= 9999999) {
+        if (studentNumber >= 100000000 && studentNumber <= 999999999) {
             this.studentNumber = studentNumber;
             newStudentNumber = newStudentNumber + 1;
 
