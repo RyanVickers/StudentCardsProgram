@@ -178,7 +178,6 @@ public class NewStudentViewController implements Initializable {
                 loader.setLocation(getClass().getResource("View.fxml"));
                 Parent ViewParent = loader.load();
                 Scene ViewScene = new Scene(ViewParent);
-
                 //access the controller
                 StudentViewController controller = loader.getController();
                 controller.getNewArray(StudentList);
@@ -187,6 +186,7 @@ public class NewStudentViewController implements Initializable {
 
                 //Getting the Stage information
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setTitle("View Students");
 
                 window.setScene(ViewScene);
                 window.show();
@@ -261,6 +261,15 @@ public class NewStudentViewController implements Initializable {
 
     public void getArray(ArrayList<Student> newStudentList) {
         StudentList = newStudentList;
+    }
+
+    public void loadDefaultStudent() {
+        fNameTextField.setText("Ryan");
+        lNameTextField.setText("Vickers");
+        datePicker.setValue(LocalDate.of(2001, 7,5));
+        videoGamesCheckBox.setSelected(true);
+        musicCheckBox.setSelected(true);
+        codingCheckBox.setSelected(true);
     }
 }
 

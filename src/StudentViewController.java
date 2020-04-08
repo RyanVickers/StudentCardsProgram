@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -55,6 +56,7 @@ public class StudentViewController implements Initializable {
     @FXML
     private ImageView studentImage;
 
+
     private Student selectedStudent;
     private ArrayList<Student> newStudentList;
 
@@ -76,9 +78,13 @@ public class StudentViewController implements Initializable {
         activityTextArea.setText(student.getActivityList());
         studentImage.setImage(selectedStudent.getImage());
         birthday.setText(selectedStudent.getBirthday() + " Age: " + selectedStudent.getAge());
-        studentListView.getItems().addAll(newStudentList);
+
     }
 
+    public void listClicked() {
+        Student student = studentListView.getSelectionModel().getSelectedItem();
+        initData(student);
+    }
 
     public void createStudentPushed(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -92,13 +98,14 @@ public class StudentViewController implements Initializable {
 
         //Getting the Stage information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
+        window.setTitle("Create Student");
         window.setScene(ViewScene);
         window.show();
     }
 
     public void getNewArray(ArrayList<Student> StudentList) {
         newStudentList = StudentList;
+        studentListView.getItems().addAll(newStudentList);
     }
 }
 

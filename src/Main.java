@@ -11,7 +11,7 @@ public class Main extends Application {
      */
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("NewView.fxml"));
-        primaryStage.setTitle("Student Card");
+        primaryStage.setTitle("Create Student");
         primaryStage.setScene(new Scene(root, 587, 500));
         primaryStage.show();
     }
