@@ -1,3 +1,6 @@
+import com.sun.jdi.event.StepEvent;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,17 +51,15 @@ public class StudentViewController implements Initializable {
     @FXML
     private TextArea activityTextArea;
     @FXML
-    private ListView<?> studentListView;
-
+    private ListView<Student> studentListView;
     @FXML
     private ImageView studentImage;
-    private Student selectedStudent;
-    private ArrayList<Student> studentList = new ArrayList<>();
 
+    private Student selectedStudent;
+    private ArrayList<Student> newStudentList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
 
     }
 
@@ -75,8 +76,9 @@ public class StudentViewController implements Initializable {
         activityTextArea.setText(student.getActivityList());
         studentImage.setImage(selectedStudent.getImage());
         birthday.setText(selectedStudent.getBirthday() + " Age: " + selectedStudent.getAge());
-        studentList.add(selectedStudent);
+        studentListView.getItems().addAll(newStudentList);
     }
+
 
     public void createStudentPushed(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -84,14 +86,21 @@ public class StudentViewController implements Initializable {
         Parent ViewParent = loader.load();
         Scene ViewScene = new Scene(ViewParent);
 
+        NewStudentViewController controller = loader.getController();
+        controller.getArray(newStudentList);
+
+
         //Getting the Stage information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(ViewScene);
         window.show();
     }
-}
 
+    public void getNewArray(ArrayList<Student> StudentList) {
+        newStudentList = StudentList;
+    }
+}
 
 
 

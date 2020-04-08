@@ -11,17 +11,17 @@ public class Student {
     private ArrayList<String> activityList;
     private LocalDate birthday;
     private Image image;
-    private static int newStudentNumber=1000000;
+    private static int newStudentNumber = 1000000;
 
     /**
      * This constructor accepts a first name,last name and student #
      * to create a student object with valid values
-     *  @param firstName     must contain more than 1 letter
-     * @param lastName      must contain more than 1 letter
-
+     *
+     * @param firstName must contain more than 1 letter
+     * @param lastName  must contain more than 1 letter
      * @param image
      */
-    public Student(String firstName, String lastName,int studentNumber,String activity, LocalDate birthday, Image image) {
+    public Student(String firstName, String lastName, int studentNumber, String activity, LocalDate birthday, Image image) {
         setFirstName(firstName);
         setLastName(lastName);
         setStudentNumber(newStudentNumber);
@@ -88,20 +88,20 @@ public class Student {
 
         return studentNumber;
     }
-public static int getNewStudentNumber(){
-    return newStudentNumber;
-}
+
+    public static int getNewStudentNumber() {
+        return newStudentNumber;
+    }
+
     /**
      * This method validates the student number is in the proper range
-     *
      */
     private void setStudentNumber(int studentNumber) {
-        if (studentNumber >= 1000000 && studentNumber<= 9999999) {
-            this.studentNumber=studentNumber;
-            newStudentNumber=newStudentNumber+1;
+        if (studentNumber >= 1000000 && studentNumber <= 9999999) {
+            this.studentNumber = studentNumber;
+            newStudentNumber = newStudentNumber + 1;
 
-        }
-        else
+        } else
             throw new IllegalArgumentException("The student number should be in the range 10000000-9999999");
     }
 
@@ -122,8 +122,13 @@ public static int getNewStudentNumber(){
      *
      * @return
      */
+    public String studentString() {
+        return String.format("%s %s, student #: %d%n" + "Favourite Activities: %n%s%n", getFirstName(), getLastName(), getStudentNumber(), getActivityList());
+    }
+
     public String toString() {
-        return String.format("%s %s student #: %d%n Favourite Activities: %n%s%n", firstName, lastName, studentNumber, getActivityList());
+
+        return String.format("%s %s, student #: %d%n", getFirstName(), getLastName(), getStudentNumber());
     }
 
     /**
@@ -132,7 +137,7 @@ public static int getNewStudentNumber(){
      * @return activitylist
      */
     public String getActivityList() {
-        return activityList.toString().replace("[", "").replace("]", "");
+        return activityList.toString().replace("[", "").replace("]", "").replace(" ", "\n");
 
     }
 
@@ -182,9 +187,10 @@ public static int getNewStudentNumber(){
         int age = period.getYears();
         return age;
     }
+
     public void setImage(Image image) {
-        if(!image.isError())
-        this.image = image;
+        if (!image.isError())
+            this.image = image;
         else
             throw new IllegalArgumentException("Image Error");
     }

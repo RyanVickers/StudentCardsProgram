@@ -9,6 +9,9 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.DatePicker;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -19,6 +22,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class NewStudentViewController implements Initializable {
@@ -94,17 +98,19 @@ public class NewStudentViewController implements Initializable {
     private DatePicker datePicker;
 
     @FXML
-    void getAge(ActionEvent event) {
+    void getAge() {
 
     }
 
-    private Student student1;
     private ArrayList<String> interestList = new ArrayList<>();
+    private ArrayList<Student> StudentList = new ArrayList<>();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         chooseImage.setImage(new Image("images/defaultImage.jpg"));
         studentNumberTextField.setText(String.valueOf(Student.getNewStudentNumber()));
+
 
     }
 
@@ -152,23 +158,7 @@ public class NewStudentViewController implements Initializable {
      */
     public String getActivity() {
         activity();
-        return interestList.toString().replace("[", "").replace("]", "").replace(",", "");
-    }
-
-    /**
-     * Method checks if fields are entered and prints out stduent object
-     * to the console if submit button is pressed
-     */
-    public void buttonPressed() {
-        if (fieldsEntered()) {
-            try {
-                student1 = new Student(fNameTextField.getText(), lNameTextField.getText(),Integer.parseInt(studentNumberTextField.getText()), getActivity(), datePicker.getValue(), chooseImage.getImage());
-                System.out.println(student1);
-                viewStudentButton.setVisible(true);
-            } catch (IllegalArgumentException e) {
-                errorLabel.setText(e.getMessage());
-            }
-        }
+        return interestList.toString().replace("[", "").replace("]", "").replace(",", "").replace(" ", "\n");
     }
 
     /**
@@ -178,20 +168,32 @@ public class NewStudentViewController implements Initializable {
      * @throws IOException
      */
     public void viewStudentPushed(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("View.fxml"));
-        Parent ViewParent = loader.load();
-        Scene ViewScene = new Scene(ViewParent);
+        if (fieldsEntered()) {
+            try {
+                Student student1 = new Student(fNameTextField.getText(), lNameTextField.getText(), Integer.parseInt(studentNumberTextField.getText()), getActivity(), datePicker.getValue(), chooseImage.getImage());
+                StudentList.add(student1);
+                System.out.print(student1.studentString());
 
-        //access the controller
-        StudentViewController controller = loader.getController();
-        controller.initData(student1);
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("View.fxml"));
+                Parent ViewParent = loader.load();
+                Scene ViewScene = new Scene(ViewParent);
 
-        //Getting the Stage information
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                //access the controller
+                StudentViewController controller = loader.getController();
+                controller.getNewArray(StudentList);
+                controller.initData(student1);
 
-        window.setScene(ViewScene);
-        window.show();
+
+                //Getting the Stage information
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                window.setScene(ViewScene);
+                window.show();
+            } catch (IllegalArgumentException e) {
+                errorLabel.setText(e.getMessage());
+            }
+        }
     }
 
     /**
@@ -250,11 +252,15 @@ public class NewStudentViewController implements Initializable {
         }
     }
 
-    public void getAge() {
+    public void getAge(ActionEvent event) {
         LocalDate date = LocalDate.now();
         Period period = Period.between(datePicker.getValue(), date);
         int age = period.getYears();
-        birthday.setText(String.valueOf(age));
+        birthday.setText("Age: " + age);
+    }
+
+    public void getArray(ArrayList<Student> newStudentList) {
+        StudentList = newStudentList;
     }
 }
 
